@@ -15,8 +15,6 @@ class TestPets:
         #     "photoUrls": ["https://example.com/photo.jpg"],
         #     "tags": [{"id": 2, "name": "big_cat"}],
         #     "status": "available",
-        #
-
         ex_cat_id = 900
         ex_name_pet = "Маркиз"
         ex_category_id = 1

@@ -17,10 +17,6 @@ class Pets(Helper):
             headers=self.headers,
             json=payloads,
         )
+
         assert res.status_code == 200
         return res.json()
-
-    # def assert_two_files(self, path: str, path2: str) -> bool:
-    #     file_1
-    #     file_2
-    #     return True
