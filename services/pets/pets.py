@@ -18,7 +18,7 @@ class Pets(Helper):
         :return: dict
         """
         res = requests.post(
-            url=f"{self.host}{self.__endpoints.post_pet}",
+            url=f"{self.host}{self.__endpoints.pet}",
             headers=self.headers,
             json=payloads,
         )
@@ -33,7 +33,7 @@ class Pets(Helper):
         :return: pet obj
         """
         res = requests.get(
-            url=f"{self.host}{self.__endpoints.get_pet(pet_id=pet_id)}",
+            url=f"{self.host}{self.__endpoints.pet_by_id(pet_id=pet_id)}",
             headers=self.headers,
         )
         assert res.status_code == 200
@@ -46,7 +46,7 @@ class Pets(Helper):
         :return: новое описание объекта в json
         """
         res = requests.get(
-            url=f"{self.host}{self.__endpoints.put_pet}",
+            url=f"{self.host}{self.__endpoints.pet}",
             headers=self.headers,
             json=payloads,
         )
@@ -60,7 +60,7 @@ class Pets(Helper):
         :return: None
         """
         res = requests.delete(
-            url=f"{self.host}{self.__endpoints.get_pet(pet_id=pet_id)}",
+            url=f"{self.host}{self.__endpoints.pet_by_id(pet_id=pet_id)}",
             headers=self.headers,
         )
         assert res.status_code == 200
