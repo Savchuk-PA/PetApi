@@ -29,3 +29,8 @@ class TestPets:
         assert res["tags"][0]["id"] == ex_tags_id
         assert res["tags"][0]["name"] == ex_tags_name
         assert res["status"] == ex_status
+
+    def test_get_pet_by_id(self, pet):
+        pets = services.Pets()
+        res = pets.get_pet_by_id(pet_id=pet["id"])
+        pprint(res)
