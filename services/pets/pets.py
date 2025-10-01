@@ -1,3 +1,4 @@
+import allure
 import requests
 from helper import Helper
 from .endpoints import Endpoints
@@ -10,6 +11,7 @@ class Pets(Helper):
     __endpoints = Endpoints
     payloads = Payloads
 
+    @allure.step("Создание Пета")
     def create_pet(self, payloads: dict) -> PetModelResponse:
         """
         Create a new pet
@@ -21,9 +23,11 @@ class Pets(Helper):
             headers=self.headers,
             json=payloads,
         )
-
-        assert res.status_code == 200
-        return PetModelResponse(**res.json())
+        with allure.step(
+            f"Проверка кода ответа от сервера. Код ответа от сервера: {res.status_code}"
+        ):
+            assert res.status_code == 200
+            return PetModelResponse(**res.json())
 
     def get_pet_by_id(self, pet_id: int):
         """
