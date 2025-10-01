@@ -2,6 +2,7 @@ import requests
 from helper import Helper
 from .endpoints import Endpoints
 from .payloads import Payloads
+from .models.pet_model import PetModelResponse
 
 
 class Pets(Helper):
@@ -9,9 +10,7 @@ class Pets(Helper):
     __endpoints = Endpoints
     payloads = Payloads
 
-    host = "https://petstore.swagger.io/v2"
-
-    def create_pet(self, payloads: dict):
+    def create_pet(self, payloads: dict) -> PetModelResponse:
         """
         Create a new pet
         :param payloads: dict obj description
@@ -24,7 +23,7 @@ class Pets(Helper):
         )
 
         assert res.status_code == 200
-        return res.json()
+        return PetModelResponse(**res.json())
 
     def get_pet_by_id(self, pet_id: int):
         """
@@ -37,7 +36,7 @@ class Pets(Helper):
             headers=self.headers,
         )
         assert res.status_code == 200
-        return res.json()
+        return PetModelResponse(**res.json())
 
     def update_pet(self, payloads: dict):
         """
@@ -51,7 +50,7 @@ class Pets(Helper):
             json=payloads,
         )
         assert res.status_code == 200
-        return res.json()
+        return PetModelResponse(**res.json())
 
     def delete_pet(self, pet_id: int):
         """
