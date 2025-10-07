@@ -6,6 +6,14 @@ fake = Faker("ru_Ru")
 
 class Payloads:
 
+    random_pet = {
+        "id": random.randint(1, 1000),
+        "name": "Маркиз",
+        "category": {"id": random.randint(1, 1000), "name": "cat"},
+        "photoUrls": ["https://example.com/photo.jpg"],
+        "tags": [{"id": random.randint(1, 1000), "name": "big_cat"}],
+        "status": "available",
+    }
     test_pet = {
         "id": 900,
         "name": "Маркиз",

@@ -1,4 +1,5 @@
 import logging
+from pprint import pprint
 from typing import TypeVar, Type
 
 import allure
@@ -18,7 +19,7 @@ class Helper:
     host: str = settings.api.host
 
     @allure.step("Базовая проверка ответа от сервера:")
-    def basic_assert_response(
+    async def basic_assert_response(
         self,
         response: Response,
         pydantic_model: Type[T],
@@ -26,6 +27,7 @@ class Helper:
     ):
         try:
             logger.info("Response: status code %s", response.status_code)
+            pprint(response.json())
             assert (
                 response.status_code == status_code
             ), f"EX status code: {status_code}, AC status code: {response.status_code}"
